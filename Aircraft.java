@@ -17,6 +17,7 @@ public abstract class Aircraft {
     protected float wingspan;             // Wingspan in meters or whatever unit
     protected float weight;               // Aircraft weight
     protected float maxSpeed;             // Max speed it can fly
+
     protected MissionContext[] missionContext = new MissionContext[10];  // Fixed-size array for missions
 
     // Internal counters to track how many missions of each type the aircraft did
@@ -38,7 +39,6 @@ public abstract class Aircraft {
      * Constructs an Aircraft with all the parameters below.
      * Also sets the next inspection date automatically to one year after the last.
      *
-     * @param idAircraft           The aircraft's unique ID
      * @param manufacture          The manufacturer of the aircraft
      * @param incorporationDate    The date the aircraft entered service
      * @param lastInspectionDate   The date of the last inspection
@@ -48,10 +48,9 @@ public abstract class Aircraft {
      * @param weight               The aircraft's weight
      * @param maxSpeed             The aircraft's maximum speed
      */
-    public Aircraft(String idAircraft, String manufacture, Date incorporationDate, Date lastInspectionDate,
+    public Aircraft(String manufacture, Date incorporationDate, Date lastInspectionDate,
                     Date lastMaintenanceDate, Date nextMaintenanceDate, float wingspan, float weight,
                     float maxSpeed) {
-        this.idAircraft = idAircraft;
         this.manufacture = manufacture;
         this.manufacturer = manufacture; // Initialize both manufacturer attributes
         this.incorporationDate = incorporationDate;
@@ -77,8 +76,6 @@ public abstract class Aircraft {
 
     // -------- Methods --------
 
-
-    private void generateIdAircraft() {}
 
     public int getIntPartAircraftID() {return intPartAircraftID;}
 
@@ -310,18 +307,6 @@ public abstract class Aircraft {
      */
     public String getIdAircraft() {return idAircraft;}
 
-    /**
-     * Sets the aircraft ID
-     * @param idAircraft new aircraft ID
-     */
-    public void setIdAircraft(String idAircraft) {this.idAircraft = idAircraft;}
-
-    /**
-     * Should be implemented to return some unique number (maybe registration).
-     *
-     * @return some aircraft number
-     */
-    public abstract Integer getNumber();
 
     /**
      * Increases mission count based on the mission context passed in.
