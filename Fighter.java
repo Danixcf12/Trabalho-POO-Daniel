@@ -36,10 +36,17 @@ public class Fighter extends Aircraft {
 
         // Calls the constructor of the superclass Aircraft
         super(idAircraft, manufacture, incorporationDate, lastInspectionDate, lastMaintenanceDate,
-                nextMaintenanceDate, wingspan, weight, maxSpeed, null);
+                nextMaintenanceDate, wingspan, weight, maxSpeed);
         this.fighterType = fighterType; // Assigns fighter type
         this.missions = new Mission[0]; // Initializes mission array
+
         numberOfFighterCreated++;
+
+        generateFighterID();
+    }
+
+    private void generateFighterID(){
+        idAircraft = "F" + getIntPartAircraftID();
     }
 
     /**
@@ -75,21 +82,6 @@ public class Fighter extends Aircraft {
         this.fighterType = type;
     }
 
-    /**
-     * Overridden method to extract and return the number from the aircraft ID
-     * Assumes ID is in format like "F001", "F045", etc.
-     *
-     * @return Integer part of the ID or 0 if conversion fails
-     */
-    @Override
-    public Integer getNumber() {
-        try {
-            return Integer.parseInt(idAircraft.substring(1)); // Extracts numeric part of ID
-        } catch (NumberFormatException e) {
-            System.err.println("Error extracting number from aircraft ID: " + idAircraft);
-            return 0;
-        }
-    }
 
     /**
      * Static method to get the total number of Fighter instances created
