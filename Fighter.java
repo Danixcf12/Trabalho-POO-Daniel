@@ -19,7 +19,6 @@ public class Fighter extends Aircraft {
     /**
      * Constructor for Fighter class
      *
-     * @param idAircraft           Unique ID of the aircraft
      * @param manufacture          Manufacturer of the aircraft
      * @param incorporationDate    Date the aircraft was incorporated into service
      * @param lastInspectionDate   Date of the last inspection
@@ -30,12 +29,12 @@ public class Fighter extends Aircraft {
      * @param maxSpeed             Maximum speed the aircraft can reach
      * @param fighterType          Type of the fighter (e.g., AIR_SUPERIORITY, MULTIROLE, etc.)
      */
-    public Fighter(String idAircraft, String manufacture, Date incorporationDate,
+    public Fighter(String manufacture, Date incorporationDate,
                    Date lastInspectionDate, Date lastMaintenanceDate, Date nextMaintenanceDate,
                    float wingspan, float weight, float maxSpeed, FighterType fighterType) {
 
         // Calls the constructor of the superclass Aircraft
-        super(idAircraft, manufacture, incorporationDate, lastInspectionDate, lastMaintenanceDate,
+        super(manufacture, incorporationDate, lastInspectionDate, lastMaintenanceDate,
                 nextMaintenanceDate, wingspan, weight, maxSpeed);
         this.fighterType = fighterType; // Assigns fighter type
         this.missions = new Mission[0]; // Initializes mission array
