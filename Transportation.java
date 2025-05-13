@@ -19,7 +19,6 @@ public class Transportation extends Aircraft {
     /**
      * Constructor for Fighter class
      *
-     * @param idAircraft           Unique ID of the aircraft
      * @param manufacture          Manufacturer of the aircraft
      * @param incorporationDate    Date the aircraft was incorporated into service
      * @param lastInspectionDate   Date of the last inspection
@@ -30,16 +29,22 @@ public class Transportation extends Aircraft {
      * @param maxSpeed             Maximum speed the aircraft can reach
      * @param transportationType          Type of the fighter (e.g., AIR_SUPERIORITY, MULTIROLE, etc.)
      */
-    public Transportation(String idAircraft, String manufacture, Date incorporationDate,
+    public Transportation(String manufacture, Date incorporationDate,
                           Date lastInspectionDate, Date lastMaintenanceDate, Date nextMaintenanceDate,
                           float wingspan, float weight, float maxSpeed, TransportationType transportationType) {
 
         // Calls the constructor of the superclass Aircraft
-        super(idAircraft, manufacture, incorporationDate, lastInspectionDate, lastMaintenanceDate,
-                nextMaintenanceDate, wingspan, weight, maxSpeed, null);
+        super(manufacture, incorporationDate, lastInspectionDate, lastMaintenanceDate,
+                nextMaintenanceDate, wingspan, weight, maxSpeed);
         this.transportationType = transportationType; // Assigns fighter type
         this.missions = new Mission[0]; // Initializes mission array
         numberOfTransportationCreated++;
+
+        generateTransportationID();
+    }
+
+    private void generateTransportationID(){
+        idAircraft = "T" + getIntPartAircraftID();
     }
 
     /**
@@ -75,21 +80,6 @@ public class Transportation extends Aircraft {
         this.transportationType = type;
     }
 
-    /**
-     * Overridden method to extract and return the number from the aircraft ID
-     * Assumes ID is in format like "F001", "F045", etc.
-     *
-     * @return Integer part of the ID or 0 if conversion fails
-     */
-    @Override
-    public Integer getNumber() {
-        try {
-            return Integer.parseInt(idAircraft.substring(1)); // Extracts numeric part of ID
-        } catch (NumberFormatException e) {
-            System.err.println("Error extracting number from aircraft ID: " + idAircraft);
-            return 0;
-        }
-    }
 
     /**
      * Static method to get the total number of Fighter instances created
