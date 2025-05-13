@@ -16,7 +16,6 @@ public class Helicopter extends Aircraft {
     /**
      * Constructor for the Helicopter class
      *
-     * @param idAircraft          Unique identifier of the aircraft
      * @param manufacture         Manufacturer of the helicopter
      * @param incorporationDate   Date the helicopter was added to service
      * @param lastInspectionDate  Date of the last inspection
@@ -28,30 +27,23 @@ public class Helicopter extends Aircraft {
      * @param maxSpeed            Maximum speed of the helicopter
      * @param helicopterType      Specific type of helicopter
      */
-    public Helicopter(String idAircraft, String manufacture, Date incorporationDate,
+    public Helicopter(String manufacture, Date incorporationDate,
                       Date lastInspectionDate, Date nextInspectionDate,
                       Date lastMaintenanceDate, Date nextMaintenanceDate,
                       float wingspan, float weight, float maxSpeed, HelicopterType helicopterType) {
-        // Call to the superclass constructor (Aircraft)
-        super(idAircraft, manufacture, incorporationDate, lastInspectionDate, lastMaintenanceDate,
-                nextMaintenanceDate, wingspan, weight, maxSpeed, null);  // No collection is used for missions
+        super(manufacture, incorporationDate, lastInspectionDate, lastMaintenanceDate,
+                nextMaintenanceDate, wingspan, weight, maxSpeed);
         this.helicopterType = helicopterType;
-        numberOfHelicopterCreated++; // Increment the static count when a new helicopter is created
+
+        numberOfHelicopterCreated++;
+        generateHelicopterID();
     }
 
-    /**
-     * Returns the aircraft number.
-     * This is currently a placeholder (can be adapted to extract from ID or use other logic).
-     */
-    @Override
-    public Integer getNumber() {
-        // Improved to extract number from ID if possible
-        try {
-            return Integer.parseInt(idAircraft.replaceAll("[^0-9]", "")); // Extracts numeric part from ID
-        } catch (NumberFormatException e) {
-            return numberOfHelicopterCreated; // Return static counter if ID parsing fails
-        }
+    private void generateHelicopterID(){
+        idAircraft = "H" + getIntPartAircraftID();
     }
+
+
 
     /**
      * Returns the type of this aircraft as a string.
