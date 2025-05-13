@@ -8,16 +8,16 @@ public abstract class Aircraft {
 
     // -------- Attributes --------
 
-    public String manufacture;         // Manufacturer's name
-    public Date incorporationDate;     // Date the aircraft was incorporated into service
-    public Date lastInspectionDate;    // Last inspection date
-    public Date nextInspectionDate;    // Next scheduled inspection date
-    public Date lastMaintenanceDate;   // Last maintenance performed
-    public Date nextMaintenanceDate;   // Next scheduled maintenance
-    public float wingspan;             // Wingspan in meters or whatever unit
-    public float weight;               // Aircraft weight
-    public float maxSpeed;             // Max speed it can fly
-    public MissionContext[] missionContext = new MissionContext[10];  // Fixed-size array for missions
+    protected String manufacture;         // Manufacturer's name
+    protected Date incorporationDate;     // Date the aircraft was incorporated into service
+    protected Date lastInspectionDate;    // Last inspection date
+    protected Date nextInspectionDate;    // Next scheduled inspection date
+    protected Date lastMaintenanceDate;   // Last maintenance performed
+    protected Date nextMaintenanceDate;   // Next scheduled maintenance
+    protected float wingspan;             // Wingspan in meters or whatever unit
+    protected float weight;               // Aircraft weight
+    protected float maxSpeed;             // Max speed it can fly
+    protected MissionContext[] missionContext = new MissionContext[10];  // Fixed-size array for missions
 
     // Internal counters to track how many missions of each type the aircraft did
     private int countNATIONALMissions = 0;
@@ -30,7 +30,7 @@ public abstract class Aircraft {
 
     private static int idCounter = 99;
     private int intPartAircraftID;
-    public String idAircraft;          // Unique identifier of the aircraft
+    protected String idAircraft;          // Unique identifier of the aircraft
 
     // -------- Constructor --------
 
@@ -47,11 +47,10 @@ public abstract class Aircraft {
      * @param wingspan             The aircraft's wingspan
      * @param weight               The aircraft's weight
      * @param maxSpeed             The aircraft's maximum speed
-     * @param missionContext       The mission context list the aircraft is part of
      */
     public Aircraft(String idAircraft, String manufacture, Date incorporationDate, Date lastInspectionDate,
                     Date lastMaintenanceDate, Date nextMaintenanceDate, float wingspan, float weight,
-                    float maxSpeed, MissionContext[] missionContext) {
+                    float maxSpeed) {
         this.idAircraft = idAircraft;
         this.manufacture = manufacture;
         this.manufacturer = manufacture; // Initialize both manufacturer attributes
@@ -78,11 +77,8 @@ public abstract class Aircraft {
 
     // -------- Methods --------
 
-    private void generateIdAircraft() {
 
-
-
-    }
+    private void generateIdAircraft() {}
 
     public int getIntPartAircraftID() {return intPartAircraftID;}
 
